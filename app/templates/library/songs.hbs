@@ -1,0 +1,8 @@
+<p>Displaying all songs</p>
+<ul>
+  {{#each song in model}}
+  	<li>{{#link-to 'library.songs.song' song}}{{song.title}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+
+{{outlet}}

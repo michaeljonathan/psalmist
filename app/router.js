@@ -6,8 +6,14 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-	this.route('songs', { path: '/songs' });
-	this.route('song', { path: '/songs/:song_id' });
+	this.route('service', { path: '/service' });
+	this.route('library', { path: '/library' }, function() {
+		this.route('songs', { path: '/songs'}, function() {
+			this.route('song', { path: '/:song_id' }, function () {
+				this.route('edit', { path: '/edit' });
+			});
+		}); 
+	});
 });
 
 export default Router;

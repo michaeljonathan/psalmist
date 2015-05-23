@@ -1,0 +1,7 @@
+<h1>Details for Song #{{model.id}}</h1>
+<h2>{{model.title}}</h2>
+<p>{{model.lyrics}}</p>
+
+{{#link-to 'library.songs.song.edit' model}}Edit..{{/link-to}}
+
+{{outlet}}
