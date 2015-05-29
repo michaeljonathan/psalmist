@@ -1,7 +1,115 @@
+@import "fonts";
 @import "libs/reset";
+@import "mixins";
 
 .top-bar {
 	background-color: #F0F0F0;
 	border-bottom: #EEEEEE;
 	padding: 5px;
+}
+
+/***************/
+/* App General */
+/***************/
+
+html, body, body>.ember-view, .page {
+	height: 100%;
+}
+
+.app {
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	font-family: 'Lato';
+	font-size: 16px;
+	line-height: 20px;
+	letter-spacing: 0.2px;
+
+	main {
+		flex: 1;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+header {
+	display: flex;
+	background: linear-gradient(to bottom, #2d0909 30%, #520000 100%);
+
+	nav {
+		display: flex;
+		a {
+			padding: 10px 15px;
+			color: rgba(255, 255, 255, 0.9);
+		}
+	}
+
+	.logo {
+		padding: 10px 15px;
+		text-transform: uppercase;
+		letter-spacing: 6px;
+		color: #FFFFFF;
+		background: -webkit-linear-gradient(#FFF 50%, rgba(255, 255, 255, 0.3));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
+
+main {
+	position: relative;
+
+	.page {
+		position: absolute;
+		width: 100%;
+	}
+}
+
+/****************/
+/* Service Page */
+/****************/
+
+.service.page {
+	display: flex;
+
+	.left.pane {
+		flex-basis: 250px;
+	}
+	.middle.pane {
+		flex: 1;
+		overflow: scroll;
+	}
+	.right.pane {
+		flex-basis: 250px;
+	}
+}
+
+.left.pane {
+	border-right: 1px solid #717171;
+}
+
+.middle.pane, .right.pane {
+	padding: 10px; // temporary
+}
+
+.right.pane {
+	border-left: 1px solid #717171;
+}
+
+.order-of-service, .styling {
+	padding: 10px;
+	.head {
+		.burger {
+			float: right;
+			margin-left: 5px;
+		}
+		.name {
+			@include line-overflow;
+		}
+	}
 }

@@ -1,7 +1,16 @@
-<div class="top-bar">
-	<h2>Psalmist</h2>
-	{{#link-to 'service'}}Service{{/link-to}}
-	{{#link-to 'library.songs'}}Library (Songs){{/link-to}}
+<div class="app">
+	<header>
+		<div class="logo">Psalmist</div>
+		<nav>
+			{{#link-to 'service'}}
+				<div class="link">Service</div>
+			{{/link-to}}
+			{{#link-to 'library'}}
+				<div class="link">Library</div>
+			{{/link-to}}
+		</nav>
+	</header>
+	<main>
+		{{outlet}}
+	</main>
 </div>
-
-{{outlet}}
