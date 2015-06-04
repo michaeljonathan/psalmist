@@ -1,5 +1,12 @@
-@mixin line-overflow {
+@mixin line-truncate {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+@mixin lyric-block-name {
+	padding: 3px 10px;
+	font-weight: bold;
+	color: #FFF;
+	background-color: #777;
 }

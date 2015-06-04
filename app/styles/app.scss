@@ -8,6 +8,13 @@
 	padding: 5px;
 }
 
+/*************/
+/* Variables */
+/*************/
+
+$color-active: #C50000;
+/* #006eff; */ 
+
 /***************/
 /* App General */
 /***************/
@@ -21,8 +28,8 @@ html, body, body>.ember-view, .page {
 	flex-flow: column;
 	height: 100%;
 	font-family: 'Lato';
-	font-size: 16px;
-	line-height: 20px;
+	font-size: 14px;
+	line-height: 18px;
 	letter-spacing: 0.2px;
 
 	main {
@@ -41,6 +48,8 @@ html, body, body>.ember-view, .page {
 header {
 	display: flex;
 	background: linear-gradient(to bottom, #2d0909 30%, #520000 100%);
+	font-size: 16px;
+	line-height: 20px;
 
 	nav {
 		display: flex;
@@ -70,6 +79,80 @@ main {
 	}
 }
 
+/******************************/
+/* Order of Service / Styling */
+/******************************/
+
+.order-of-service, .styling {
+	.head {
+		.burger {
+			float: right;
+			margin-left: 5px;
+			color: #777;
+		}
+		.name {
+			@include line-truncate;
+			font-weight: bold;
+		}
+	}
+}
+
+.order-of-service {
+	display: flex;
+	flex-flow: column;
+
+	.head {
+		padding: 10px 10px 0;
+	}
+
+	.items {
+		flex: 1;
+		padding: 0 10px;
+		margin-top: 7px;
+		overflow-y: scroll;
+	}
+
+	.item {
+		padding: 5px;
+		background-color: #333;
+		color: #FFFFFF;
+		margin-bottom: 7px;
+
+		.top {
+			.display-name {
+				@include line-truncate;
+			}
+		}
+
+		.bottom {
+			overflow: hidden;
+
+			.burger {
+				float: right;
+				margin-left: 5px;
+				opacity: 0.7;
+			}
+			.caption {
+				font-size: 12px;
+				font-style: italic;
+				@include line-truncate;
+				height: 20px; // Force height even if empty
+			}
+		}
+
+		&.active {
+			background: linear-gradient(to bottom right, #000000 30%, #590000 100%);
+		}
+		&:hover {
+			background-color: #222;
+		}
+	}
+}
+
+.styling {
+	padding: 10px;
+}
+
 /****************/
 /* Service Page */
 /****************/
@@ -82,7 +165,6 @@ main {
 	}
 	.middle.pane {
 		flex: 1;
-		overflow: scroll;
 	}
 	.right.pane {
 		flex-basis: 250px;
@@ -90,26 +172,245 @@ main {
 }
 
 .left.pane {
-	border-right: 1px solid #717171;
+	border-right: 1px solid #AAA;
+	display: flex;
+	flex-flow: column;
+	.order-of-service {
+		flex: 1;
+	}
+	>* {
+		border-top: 1px solid #AAA;
+		&:first-child {
+			border-top: none;
+		}
+	}
 }
 
-.middle.pane, .right.pane {
-	padding: 10px; // temporary
+.middle.pane {
+	display: flex;
+
+	.item-settings {
+		flex-basis: 200px;
+
+		display: flex;
+		flex-flow: column;
+
+		.is {
+			padding: 10px;
+		}
+
+		.head {
+			padding-bottom: 3px;
+			border-bottom: 1px solid #AAA;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 12px;
+		}
+
+		.sequence {
+			flex: 1;
+
+			.head {
+				overflow: hidden;
+				.io-toggle {
+					float: right;
+				}
+				.name {
+					@include line-truncate;
+				}
+			}
+
+			.blocks {
+
+				.block {
+					display: inline-block;
+					float: left;
+					clear: both;
+					margin-top: 8px;
+					@include lyric-block-name;
+				}
+			}
+		}
+
+		.versions {
+
+			.v-cc {
+				margin-top: 3px;
+
+				label {
+					display: block;
+					margin-top: 4px;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+
+	.item-contents {
+		flex: 1;
+		overflow-y: scroll;
+		padding: 10px;
+		position: relative;
+
+		.os-toggle {
+
+			.toggle {
+				display: inline-block;
+				font-size: 12px;
+				line-height: 16px;
+				text-transform: uppercase;
+				border-bottom: 3px solid transparent;
+				cursor: pointer;
+				padding-bottom: 3px;
+				margin-right: 5px;
+				&:hover {
+					color: $color-active;
+				}
+				&.active {
+					border-bottom-color: $color-active;
+					color: $color-active;
+					cursor: default;
+				}
+			}
+		}
+
+		.lyrics-block {
+			margin-top: 10px;
+			
+			.block-name {
+				display: inline-block;
+				margin-bottom: 5px;
+				@include lyric-block-name;
+			}
+
+			.lyrics {
+				overflow: hidden;
+
+				.lyric {
+					float: left;
+					clear: both;
+					padding: 3px 10px;
+					cursor: pointer;
+					border-radius: 4px;
+					&:hover {
+						color: $color-active;
+					}
+					&.active {
+						background-color: $color-active;
+						color: #FFF;
+						cursor: default;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
 }
 
 .right.pane {
-	border-left: 1px solid #717171;
-}
+	border-left: 1px solid #AAA;
 
-.order-of-service, .styling {
-	padding: 10px;
-	.head {
-		.burger {
-			float: right;
-			margin-left: 5px;
+	.control-panel {
+		margin-top: 5px;
+
+		.head {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 12px;
+			padding: 5px 10px;
 		}
-		.name {
-			@include line-overflow;
+
+		.miniscreen {
+			position: relative;
+			overflow: hidden;
+
+			>* {
+				position: absolute;
+			}
+		}
+
+		&.congregation {
+			.miniscreen {
+				/* For manual/settings override */
+				background-color: #000;
+				color: #FFF;
+				font-weight: bold;
+				padding-top: 56.25%;
+				text-align: center;
+				.lyric {
+					left: 5%;
+					right: 5%;
+				}
+				.main.lyric {
+					top: 5%;
+				}
+				.secondary.lyric {
+					bottom: 5%;
+					font-size: 10px;
+				}
+			}
+
+			.controls {
+				overflow: hidden;
+				.control {
+					float: left;
+					width: 33.33%;
+					padding: 10px 2% 3px;
+					text-align: center;
+					cursor: pointer;
+					&:hover {
+						color: $color-active;
+					}
+					.icon {
+						font-size: 28px;
+						.fa-times {
+							font-size: 32px;
+							margin-top: -4px;
+						}
+					}
+					.caption {
+						font-size: 10px;
+						font-weight: bold;
+						text-transform: uppercase;
+					}
+				}
+			}
+		}
+
+		&.team {
+			.miniscreen {
+				/* For manual/settings override */
+				background-color: #000;
+				color: #FFF;
+				font-weight: bold;
+				padding-top: 56.25%;
+				text-align: center;
+				.lyrics-cc {
+					top: 3%;
+					left: 3%;
+					right: 3%;
+				}
+				.lyrics-block {
+					position: relative;
+					margin: 3%;
+					.block-name {
+						text-decoration: underline;
+						font-size: 12px;
+						opacity: 0.65;
+					}
+					.lyrics {
+						.lyric {
+							padding: 3px 0;
+							opacity: 0.65;
+							font-size: 12px;
+							&.active {
+								opacity: 1;
+								font-size: 14px;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
