@@ -7,29 +7,21 @@
 				<div class="burger dark">
 					<i class="fa fa-bars"></i>
 				</div>
-				<div class="name">LLL 2015 05 24</div>
-			</div>
+				<div class="name">{{service.name}}</div>
+			</div>		
 			<div class="items">
-				<div class="item active">
-					<div class="background-image"></div>
-					<div class="top">
-						<div class="display-name">You Are My Vision</div>
+				{{#each item in service.items}}
+					<div class="item active" data-ds-id="{{item.id}}" {{action "setCurrentItem" item}}>
+						<div class="background-image"></div>
+						<div class="top">
+							<div class="display-name">{{item.name}}</div>
+						</div>
+						<div class="bottom">
+							<div class="burger light"><i class="fa fa-bars"></i></div>
+							<div class="caption">{{item.description}}</div>
+						</div>
 					</div>
-					<div class="bottom">
-						<div class="burger light"><i class="fa fa-bars"></i></div>
-						<div class="caption">Be Thou My Vision, RC Version</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="background-image"></div>
-					<div class="top">
-						<div class="display-name">In Christ Alone</div>
-					</div>
-					<div class="bottom">
-						<div class="burger light"><i class="fa fa-bars"></i></div>
-						<div class="caption"></div>
-					</div>
-				</div>
+				{{/each}}
 			</div>
 		</div>
 		<div class="styling">
@@ -67,7 +59,7 @@
 			<div class="sequence is">
 				<div class="head">
 					<div class="io-toggle">
-						<input type="checkbox" name="sequenceEnabled" value="1">
+						{{input type="checkbox" name="isSequenceEnabled" checked=currentItem.isSequenceEnabled}}
 					</div>
 					<div class="name">Sequence</div>
 				</div>
