@@ -9,7 +9,6 @@ var ServiceItem = DS.Model.extend({
 	isSequenceEnabled: DS.attr('boolean'),
 	sequence: DS.attr(),
 	versions: DS.attr(),
-	activeVersions: DS.attr(),
 
 	service: DS.belongsTo('service', {'async': true}),
 

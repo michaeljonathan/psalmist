@@ -1,0 +1,91 @@
+<!-- Service Item Settings -->
+<div class="item-settings">
+	<div class="sequence is">
+		<div class="head">
+			<div class="io-toggle">
+				{{input type="checkbox" name="isSequenceEnabled" checked=currentItem.isSequenceEnabled}}
+			</div>
+			<div class="name">Sequence</div>
+		</div>
+		<div class="blocks">
+			{{#each lyricsBlock in currentSong.primaryLyricsVersion.lyricsBlocks}}
+				<div class="block" block-name="{{lyricsBlock.name}}">{{lyricsBlock.name}}</div>
+			{{/each}}
+		</div>
+	</div>
+	<div class="versions is">
+		<div class="head">
+			<div class="name">Versions</div>
+		</div>
+		<div class="v-cc">
+			{{#each lyricsVersion in currentSong.lyricsVersions}}
+				<label>
+					{{input type="checkbox" checked=false}} {{!-- TODO --}}
+					{{lyricsVersion.name}}
+				</label>
+			{{/each}}
+		</div>
+	</div>
+</div>
+
+<!-- Service Item Contents -->
+<div class="item-contents lyrics">
+	<div class="os-toggle">
+		<div class="toggle active">Original</div>
+		<div class="toggle">Sequenced</div>
+	</div>
+	<div class="lyrics-cc">
+		<div class="lyrics-block" block-name="Verse 1">
+			<div class="block-name">Verse 1</div>
+			<div class="lyrics">
+				<div class="lyric active">You are my vision, O king of my heart</div>
+				<div class="lyric">Nothing else satisfies, only You, Lord</div>
+				<div class="lyric">You are my best thought by day or by night</div>
+				<div class="lyric">Waking or sleeping, Your presence, my light</div>
+			</div>
+		</div>
+		<div class="lyrics-block" block-name="Verse 2">
+			<div class="block-name">Verse 2</div>
+			<div class="lyrics">
+				<div class="lyric">You are my wisdom, You are my true word</div>
+				<div class="lyric">I ever with You, and You with me, Lord</div>
+				<div class="lyric">You're my great Father, and I'm Your true son</div>
+				<div class="lyric">You dwell inside me, together we're one</div>
+			</div>
+		</div>
+		<div class="lyrics-block" block-name="Verse 3">
+			<div class="block-name">Verse 3</div>
+			<div class="lyrics">
+				<div class="lyric">You are my battle-shield, sword for the fight</div>
+				<div class="lyric">You are my dignity, You're my delight</div>
+				<div class="lyric">You're my soul's shelter and You're my high tower</div>
+				<div class="lyric">Come, raise me heavenward, O Power of my power</div>
+			</div>
+		</div>
+		<div class="lyrics-block" block-name="Verse 4">
+			<div class="block-name">Verse 4</div>
+			<div class="lyrics">
+				<div class="lyric">I don't want riches or a man's empty praise</div>
+				<div class="lyric">You're my inheritance, now and always</div>
+				<div class="lyric">You and You only, the first in my heart</div>
+				<div class="lyric">High king of heaven, my treasure You are</div>
+			</div>
+		</div>
+		<div class="lyrics-block" block-name="Verse 5">
+			<div class="block-name">Verse 5</div>
+			<div class="lyrics">
+				<div class="lyric">High king of heaven, when victory's won</div>
+				<div class="lyric">May I reach heaven's joy, O bright heaven's Son</div>
+				<div class="lyric">Heart of my own heart, whatever befall</div>
+				<div class="lyric">Still be my vision, O ruler of all</div>
+			</div>
+		</div>
+		<div class="lyrics-block" block-name="Ending">
+			<div class="block-name">Ending</div>
+			<div class="lyrics">
+				<div class="lyric">Heart of my own heart, whatever befall</div>
+				<div class="lyric">Still be my vision, O ruler of all</div>
+			</div>
+		</div>
+	</div>
+</div>

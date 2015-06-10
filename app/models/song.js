@@ -5,7 +5,11 @@ var Song = DS.Model.extend({
 	title: DS.attr('string'),
 	description: DS.attr('string'),
 
-	lyricsVersions: DS.hasMany('lyrics-version', {'async': true})
+	lyricsVersions: DS.hasMany('lyrics-version', {'async': true}),
+
+	primaryLyricsVersion: function() {
+		return this.get('lyricsVersions') ? this.get('lyricsVersions').objectAt(0) : false;
+	}.property('lyricsVersions')
 
 });
 
