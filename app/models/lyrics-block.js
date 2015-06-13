@@ -4,12 +4,18 @@ var LyricsBlock = DS.Model.extend({
 	
 	name: DS.attr('string'),
 
-	lyrics: DS.attr(),
+	lyrics: DS.hasMany('lyric', {async: true}),
 
-	lryicsVersion: DS.belongsTo('lyrics-version', {'async': true}),
+	lyricsVersion: DS.belongsTo('lyrics-version', {'async': true}),
+
+	lyricsArray: function() {
+		return this.get('lyrics').map(function(lyric) {
+			return lyric.get('text');
+		});
+	}.property('lyrics.@each.text'),
 
 	lnLyrics: function() {
-		return this.get('lyrics') ? this.get('lyrics').toArray().join('\n') : '';
+		return this.get('lyricsArray') ? this.get('lyricsArray').toArray().join('\n') : '';
 	}.property('lyrics')
 
 });
@@ -18,12 +24,7 @@ LyricsBlock.reopenClass({
 	FIXTURES: [{
 		id: 1,
 		name: 'Verse 1',
-		lyrics: [
-			'You are my vision, O king of my heart',
-			'Nothing else satisfies, only You, Lord',
-			'You are my best thought by day or by night',
-			'Waking or sleeping, Your presence, my light'
-		]
+		lyrics: [1, 2, 3, 4]
 	}]
 });
 

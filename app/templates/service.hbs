@@ -11,7 +11,7 @@
 			</div>		
 			<div class="items">
 				{{#each item in service.items}}
-					<div class="item active" data-ds-id="{{item.id}}" {{action "setCurrentItem" item}}>
+					<div class="item active" data-ds-id="{{item.id}}" {{action "setSelectedItem" item}}>
 						<div class="background-image"></div>
 						<div class="top">
 							<div class="display-name">{{item.name}}</div>
@@ -54,11 +54,11 @@
 	<!-- Middle Pane -->
 	<div class="middle pane">
 
-		{{#if currentItem}}
+		{{#if selectedItem}}
 
-			{{#if currentSong}}
+			{{#if selectedSong}}
 
-				{{view "service-song"}}
+				{{render "service-song" selectedSong}}
 
 			{{else}}
 
