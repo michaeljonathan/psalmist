@@ -141,7 +141,7 @@ main {
 			}
 		}
 
-		&.active {
+		&.selected {
 			background: linear-gradient(to bottom right, #000000 30%, #590000 100%);
 		}
 		&:hover {

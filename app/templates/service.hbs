@@ -11,16 +11,7 @@
 			</div>		
 			<div class="items">
 				{{#each item in service.items}}
-					<div class="item active" data-ds-id="{{item.id}}" {{action "setSelectedItem" item}}>
-						<div class="background-image"></div>
-						<div class="top">
-							<div class="display-name">{{item.name}}</div>
-						</div>
-						<div class="bottom">
-							<div class="burger light"><i class="fa fa-bars"></i></div>
-							<div class="caption">{{item.description}}</div>
-						</div>
-					</div>
+					{{service-oos-item item=item selectAction="setSelectedItem" selectedItem=selectedItem}}
 				{{/each}}
 			</div>
 		</div>

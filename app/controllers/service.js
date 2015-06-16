@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
 			this.set('selectedItem', item);
 		},
 
-		'activateLyric': function(lyric) {
+		activateLyric: function(lyric) {
 			/* For a Song: activate a lyric line */
 			var lyricsBlock = lyric.get('lyricsBlock');
 			var song = lyric.get('lyricsBlock.lyricsVersion.song');
