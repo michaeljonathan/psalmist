@@ -1,0 +1,121 @@
+<div class="service page">
+
+	<!-- Left Pane -->
+	<div class="left pane">
+		<div class="order-of-service">
+			<div class="head">
+				<div class="burger dark">
+					<i class="fa fa-bars"></i>
+				</div>
+				<div class="name">{{service.name}}</div>
+			</div>		
+			<div class="items">
+				{{#each item in service.items}}
+					{{service-oos-item item=item selectAction="setSelectedItem" selectedItem=selectedItem}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="styling">
+			<div class="head">
+				<div class="burger dark">
+					<i class="fa fa-bars"></i>
+				</div>
+				<div class="name">Style 1</div>
+			</div>
+			<div class="styles">
+				<div class="style">
+					<div class="label">Font family</div>
+					<select name="font-family" class="value">
+						<option value="Montserrat">Montserrat</option>
+						<option value="Muli">Muli</option>
+					</select>
+				</div>
+				<div class="style">
+					<div class="label">Font size</div>
+					<select name="font-size" class="value">
+						<option value="32px">32px</option>
+						<option value="36px">36px</option>
+						<option value="auto">Automatic</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Middle Pane -->
+	<div class="middle pane">
+
+		{{#if selectedItem}}
+
+			{{#if selectedSong}}
+
+				{{service-mp-song
+					song=selectedSong
+					selectedItem=selectedItem
+					activeLyricsBlock=activeLyricsBlock
+					activateLyricAction="activateLyric"}}
+
+			{{else}}
+
+				<div class="other-item-type">There is a problem with this item (unrecognized itemType).</div>
+
+			{{/if}}
+
+		{{else}}
+
+			<div class="pick-item">Select a service item.</div>
+
+		{{/if}}
+
+	</div>
+
+	<!-- Right Pane -->
+	<div class="right pane">
+
+		<!-- Congregation Control Panel -->
+		<div class="congregation control-panel">
+			<div class="head">
+				<div class="name">Congregation</div>
+			</div>
+			<div class="miniscreen">
+				<div class="main lyric">You are my vision, O king of my heart</div>
+				<div class="secondary lyric">Engkaulah visiku, O raja hatiku</div>
+			</div>
+			<div class="controls">
+				<div class="control">
+					<div class="icon"><i class="fa fa-square-o"></i></div>
+					<div class="caption">Clear</div>
+				</div>
+				<div class="control">
+					<div class="icon"><i class="fa fa-square"></i></div>
+					<div class="caption">Black</div>
+				</div>
+				<div class="control">
+					<div class="icon"><i class="fa fa-times"></i></div>
+					<div class="caption">Off</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Team Control Panel -->
+		<div class="team control-panel">
+			<div class="head">
+				<div class="name">Team</div>
+			</div>
+			<div class="miniscreen">
+				<div class="lyrics-cc">
+					<div class="lyrics-block">
+						<div class="block-name">Verse 1</div>
+						<div class="lyrics">
+							<div class="lyric active">You are my vision, O king of my heart</div>
+							<div class="lyric">Nothing else satisfies, only You, Lord</div>
+							<div class="lyric">You are my best thought by day or by night</div>
+							<div class="lyric">Waking or sleeping, Your presence, my light</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

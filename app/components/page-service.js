@@ -1,9 +1,12 @@
-import Ember from "ember";
+import Ember from 'ember';
 
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
 
 	selectedItem: false,
 
+	/* Song */
+
+	activeLyricsBlock: false,
 	selectedSong: function() {
 		if (this.get('selectedItem') && this.get('selectedItem').get('itemType') === 'song') {
 			return this.get('selectedItem').get('song');

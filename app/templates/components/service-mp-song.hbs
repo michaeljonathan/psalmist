@@ -36,14 +36,10 @@
 	</div>
 	<div class="lyrics-cc">
 		{{#each lyricsBlock in song.primaryLyricsVersion.lyricsBlocks}}
-			<div class="lyrics-block" block-name="{{lyricsBlock.name}}">
-				<div class="block-name">{{lyricsBlock.name}}</div>
-				<div class="lyrics">
-					{{#each lyric in lyricsBlock.lyrics}}
-						<div class="lyric" {{action "activateLyric" lyric}}>{{lyric.text}}</div>
-					{{/each}}
-				</div>
-			</div>
+			{{service-mp-song-lyrics-block
+				lyricsBlock=lyricsBlock
+				activeLyricsBlock=activeLyricsBlock
+				activateLyricAction="activateLyric"}}
 		{{/each}}
 	</div>
 </div>

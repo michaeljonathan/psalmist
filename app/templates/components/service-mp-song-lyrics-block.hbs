@@ -1,0 +1,10 @@
+<div class="lyrics-block" block-name="{{lyricsBlock.name}}">
+	<div class="block-name">{{lyricsBlock.name}}</div>
+	<div class="lyrics">
+		{{#each lyric in lyricsBlock.lyrics}}
+			{{service-mp-song-lyric
+				lyric=lyric
+				activateAction="activateLyric"}}
+		{{/each}}
+	</div>
+</div>
