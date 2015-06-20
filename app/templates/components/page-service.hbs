@@ -77,12 +77,13 @@
 		<!-- Congregation Control Panel -->
 		<div class="congregation control-panel">
 			<div class="head">
-				<div class="name">Congregation</div>
+				<div class="name">{{activeSecondaryLyric.text}}</div>
 			</div>
 			<div class="miniscreen">
 				{{#if selectedSong}}
-					<div class="main lyric">{{activeLyric.text}}</div>
-					<div class="secondary lyric">Engkaulah visiku, O raja hatiku</div>
+					{{display-song
+						activeLyric=activeLyric
+						activeSecondaryLyricPromise=activeSecondaryLyric}}
 				{{/if}}
 			</div>
 			<div class="controls">
@@ -107,17 +108,9 @@
 				<div class="name">Team</div>
 			</div>
 			<div class="miniscreen">
-				<div class="lyrics-cc">
-					<div class="lyrics-block">
-						<div class="block-name">Verse 1</div>
-						<div class="lyrics">
-							<div class="lyric active">You are my vision, O king of my heart</div>
-							<div class="lyric">Nothing else satisfies, only You, Lord</div>
-							<div class="lyric">You are my best thought by day or by night</div>
-							<div class="lyric">Waking or sleeping, Your presence, my light</div>
-						</div>
-					</div>
-				</div>
+				{{#if selectedSong}}
+					{{display-song-team}}
+				{{/if}}
 			</div>
 		</div>
 

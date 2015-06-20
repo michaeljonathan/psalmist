@@ -21,6 +21,56 @@ export default Ember.Component.extend({
 		return false;
 	}.property('selectedItem'),
 
+	activeSecondaryLyric: function() {
+
+		if (!this.get('selectedSong')) {
+			return false;
+		}
+
+		var activeLyric,
+			activeLyricIndex,
+			activeLyricsBlock,
+			activeLyricsBlockIndex,
+			activeSong,
+			secondaryVersionName;
+
+		activeLyric = this.get('activeLyric');
+		secondaryVersionName = this.get('selectedItem.secondaryVersionName');
+		if (!(activeLyric && secondaryVersionName)) {
+			return false;
+		}
+
+		return activeLyric.get('lyricsBlock').then(function(lyricsBlock) {
+			activeLyricsBlock = lyricsBlock;
+			activeLyricIndex = activeLyricsBlock.get('lyrics').indexOf(activeLyric);
+			return activeLyricsBlock.get('lyricsVersion');
+		}).then(function(lyricsVersion) {
+			activeLyricsBlockIndex = lyricsVersion.get('lyricsBlocks').indexOf(activeLyricsBlock);
+			return lyricsVersion.get('song');
+		}).then(function(song) {
+			activeSong = song;
+			return activeSong.get('lyricsVersions');
+		}).then(function(lyricsVersions) {
+			return lyricsVersions.filterBy('name', secondaryVersionName);
+		}).then(function(matchedLyricsVersions) {
+			var matchedLyricsVersion = matchedLyricsVersions[0];
+			if (!matchedLyricsVersion) {
+				return false;
+			}
+			return matchedLyricsVersion.get('lyricsBlocks');
+		}).then(function(lyricsBlocks) {
+			var matchedLyricsBlock = lyricsBlocks.objectAt(activeLyricsBlockIndex);
+			if (!matchedLyricsBlock) {
+				return false;
+			}
+			return matchedLyricsBlock.get('lyrics');
+		}).then(function(lyrics) {
+			var matchedLyric = lyrics.objectAt(activeLyricIndex);
+			return matchedLyric;
+		});
+
+	}.property('selectedSong', 'activeLyric', 'selectedItem.secondaryVersionName'),
+
 	activeLyricObserver: function() {
 
 		// Set activeLyricsBlock and activeSong based on the activeLyric
