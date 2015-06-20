@@ -11,7 +11,7 @@
 			</div>		
 			<div class="items">
 				{{#each item in service.items}}
-					{{service-oos-item item=item selectAction="setSelectedItem" selectedItem=selectedItem}}
+					{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
 				{{/each}}
 			</div>
 		</div>
@@ -50,9 +50,10 @@
 			{{#if selectedSong}}
 
 				{{service-mp-song
+					serviceItem=selectedItem
 					song=selectedSong
-					selectedItem=selectedItem
-					activeLyricsBlock=activeLyricsBlock
+					activeLyricBlock=activeLyricBlock
+					activeLyric=activeLyric
 					activateLyricAction="activateLyric"}}
 
 			{{else}}
@@ -78,8 +79,10 @@
 				<div class="name">Congregation</div>
 			</div>
 			<div class="miniscreen">
-				<div class="main lyric">You are my vision, O king of my heart</div>
-				<div class="secondary lyric">Engkaulah visiku, O raja hatiku</div>
+				{{#if selectedSong}}
+					<div class="main lyric">{{activeLyric.text}}</div>
+					<div class="secondary lyric">Engkaulah visiku, O raja hatiku</div>
+				{{/if}}
 			</div>
 			<div class="controls">
 				<div class="control">
