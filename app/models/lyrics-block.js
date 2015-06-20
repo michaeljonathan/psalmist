@@ -21,11 +21,18 @@ var LyricsBlock = DS.Model.extend({
 });
 
 LyricsBlock.reopenClass({
-	FIXTURES: [{
-		id: 1,
-		name: 'Verse 1',
-		lyrics: [1, 2, 3, 4]
-	}]
+	FIXTURES: [
+		{
+			id: 1,
+			name: 'Verse 1',
+			lyrics: [1, 2, 3, 4]
+		},
+		{
+			id: 2,
+			name: 'Verse 2',
+			lyrics: [5, 6, 7, 8]
+		}
+	]
 });
 
 export default LyricsBlock;

@@ -11,11 +11,18 @@ var LyricsVersion = DS.Model.extend({
 });
 
 LyricsVersion.reopenClass({
-	FIXTURES: [{
-		id: 1,
-		name: 'English',
-		lyricsBlocks: [1]
-	}]
+	FIXTURES: [
+		{
+			id: 1,
+			name: 'English',
+			lyricsBlocks: [1]
+		},
+		{
+			id: 2,
+			name: 'Indonesian',
+			lyricsBlocks: [2]
+		}
+	]
 });
 
 export default LyricsVersion;

@@ -25,6 +25,23 @@ Lyric.reopenClass({
 		{
 			id: 4,
 			text: 'Waking or sleeping, Your presence, my light'
+		},
+
+		{
+			id: 5,
+			text: 'Engkaulah visiku, O raja hatiku'
+		},
+		{
+			id: 6,
+			text: 'Tiada yang lain yang bisa memuaskan, hanya Engkau, Tuhan'
+		},
+		{
+			id: 7,
+			text: 'Engkau senantiasa kupikirkan, siang dan malam'
+		},
+		{
+			id: 8,
+			text: 'Terbangun maupun tertidur, hadiratMu, cahayaku'
 		}
 	]
 });

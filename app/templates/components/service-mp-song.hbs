@@ -3,7 +3,7 @@
 	<div class="sequence is">
 		<div class="head">
 			<div class="io-toggle">
-				{{input type="checkbox" name="isSequenceEnabled" checked=serviceItem.isSequenceEnabled}}
+				{{input type="checkbox" checked=serviceItem.isSequenceEnabled}}
 			</div>
 			<div class="name">Sequence</div>
 		</div>
@@ -13,19 +13,21 @@
 			{{/each}}
 		</div>
 	</div>
-	<div class="versions is">
-		<div class="head">
-			<div class="name">Versions</div>
+	{{#if song.secondaryLyricsVersions}}
+		<div class="versions is">
+			<div class="head">
+				<div class="name">Versions</div>
+			</div>
+			<div class="v-cc">
+				{{#each lyricsVersion in song.secondaryLyricsVersions}}
+					{{service-mp-lyrics-version-option
+						versionName=lyricsVersion.name
+						activeSecondaryVersionName=serviceItem.secondaryVersionName
+						activateAction="activateVersion"}}
+				{{/each}}
+			</div>
 		</div>
-		<div class="v-cc">
-			{{#each lyricsVersion in song.lyricsVersions}}
-				<label>
-					{{input type="checkbox" checked=false}} {{!-- TODO --}}
-					{{lyricsVersion.name}}
-				</label>
-			{{/each}}
-		</div>
-	</div>
+	{{/if}}
 </div>
 
 <!-- Service Item Contents -->

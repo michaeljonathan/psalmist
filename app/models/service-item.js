@@ -8,7 +8,7 @@ var ServiceItem = DS.Model.extend({
 
 	isSequenceEnabled: DS.attr('boolean'),
 	sequence: DS.attr(),
-	versions: DS.attr(),
+	secondaryVersionName: DS.attr('string'),
 
 	service: DS.belongsTo('service', {'async': true}),
 
@@ -39,7 +39,7 @@ ServiceItem.reopenClass({
 		song: 1,
 		isSequenceEnabled: true,
 		sequence: [],
-		versions: ['English']
+		secondaryVersionName: 'Indonesian'
 	}]
 });
 

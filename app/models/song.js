@@ -9,6 +9,10 @@ var Song = DS.Model.extend({
 
 	primaryLyricsVersion: function() {
 		return this.get('lyricsVersions') ? this.get('lyricsVersions').objectAt(0) : false;
+	}.property('lyricsVersions'),
+
+	secondaryLyricsVersions: function() {
+		return this.get('lyricsVersions') ? this.get('lyricsVersions').slice(1) : false;
 	}.property('lyricsVersions')
 
 });
@@ -18,7 +22,7 @@ Song.reopenClass({
 		id: 1,
 		title: 'You Are My Vision',
 		description: 'Be Thou My Vision, RC Version',
-		lyricsVersions: [1]
+		lyricsVersions: [1, 2]
 	}]
 });
 

@@ -43,6 +43,12 @@ export default Ember.Component.extend({
 
 		activateLyric: function(lyric) {
 			this.set('activeLyric', lyric);
+		},
+
+		activateVersion: function(version) {
+			var selectedItem = this.get('selectedItem');
+			selectedItem.set('secondaryVersionName', version);
+			selectedItem.save();
 		}
 
 	}
