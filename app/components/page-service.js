@@ -31,6 +31,7 @@ export default Ember.Component.extend({
 			activeLyricIndex,
 			activeLyricsBlock,
 			activeLyricsBlockIndex,
+			activeLyricsVersion,
 			activeSong,
 			secondaryVersionName;
 
@@ -42,11 +43,16 @@ export default Ember.Component.extend({
 
 		return activeLyric.get('lyricsBlock').then(function(lyricsBlock) {
 			activeLyricsBlock = lyricsBlock;
-			activeLyricIndex = activeLyricsBlock.get('lyrics').indexOf(activeLyric);
+			return activeLyricsBlock.get('lyrics');
+		}).then(function(lyrics) {
+			activeLyricIndex = lyrics.indexOf(activeLyric);
 			return activeLyricsBlock.get('lyricsVersion');
 		}).then(function(lyricsVersion) {
-			activeLyricsBlockIndex = lyricsVersion.get('lyricsBlocks').indexOf(activeLyricsBlock);
-			return lyricsVersion.get('song');
+			activeLyricsVersion = lyricsVersion;
+			return activeLyricsVersion.get('lyricsBlocks');
+		}).then(function(lyricsBlocks) {
+			activeLyricsBlockIndex = lyricsBlocks.indexOf(activeLyricsBlock);
+			return activeLyricsVersion.get('song');
 		}).then(function(song) {
 			activeSong = song;
 			return activeSong.get('lyricsVersions');
