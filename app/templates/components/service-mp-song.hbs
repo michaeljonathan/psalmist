@@ -21,7 +21,7 @@
 			<div class="v-cc">
 				{{#each lyricsVersion in song.secondaryLyricsVersions}}
 					{{service-mp-lyrics-version-option
-						versionName=lyricsVersion.name
+						versionName=lyricsVersion
 						activeSecondaryVersionName=serviceItem.secondaryVersionName
 						activateAction="activateVersion"}}
 				{{/each}}
@@ -37,9 +37,10 @@
 		<div class="toggle">Sequenced</div>
 	</div>
 	<div class="lyrics-cc">
-		{{#each lyricsBlock in song.primaryLyricsVersion.lyricsBlocks}}
+		{{#each lyricsBlock in song.lyricsBlocks}}
 			{{service-mp-song-lyrics-block
 				lyricsBlock=lyricsBlock
+				primaryLyricsVersion=song.primaryLyricsVersion
 				activeLyricsBlock=activeLyricsBlock
 				activeLyric=activeLyric
 				activateLyricAction="activateLyric"}}

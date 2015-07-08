@@ -36,7 +36,7 @@ ServiceItem.reopenClass({
 	FIXTURES: [{
 		id: 1,
 		itemType: 'song',
-		song: 1,
+		song: '55974df67270a0f41b19fa20',
 		isSequenceEnabled: true,
 		sequence: [],
 		secondaryVersionName: 'Indonesian'

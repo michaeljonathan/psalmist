@@ -77,13 +77,14 @@
 		<!-- Congregation Control Panel -->
 		<div class="congregation control-panel">
 			<div class="head">
-				<div class="name">{{activeSecondaryLyric.text}}</div>
+				<div class="name">Congregation</div>
 			</div>
 			<div class="miniscreen">
 				{{#if selectedSong}}
 					{{display-song
 						activeLyric=activeLyric
-						activeSecondaryLyricPromise=activeSecondaryLyric}}
+						song=selectedSong
+						selectedSecondaryVersionName=selectedSecondaryVersionName}}
 				{{/if}}
 			</div>
 			<div class="controls">

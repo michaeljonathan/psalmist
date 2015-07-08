@@ -5,8 +5,9 @@ export default Ember.Component.extend({
 		activateVersion: function(version) {
 			this.sendAction('activateVersionAction', version);
 		},
-		activateLyric: function(lyric) {
-			this.sendAction('activateLyricAction', lyric);
+		activateLyric: function(activationData) {
+			activationData.song = this.get('song');
+			this.sendAction('activateLyricAction', activationData);
 		}
 	}
 });

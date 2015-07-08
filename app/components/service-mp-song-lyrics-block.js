@@ -3,8 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
 	actions: {
-		activateLyric: function(lyric) {
-			this.sendAction('activateLyricAction', lyric);
+		activateLyric: function(activationData) {
+			activationData.lyricsBlock = this.get('lyricsBlock');
+			this.sendAction('activateLyricAction', activationData);
 		}
 	}
 });
