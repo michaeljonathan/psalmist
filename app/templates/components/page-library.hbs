@@ -1,34 +1,40 @@
-<div class="page page-library">
-
-	<!-- Left Pane -->
-	<div class="page-library_left">
-		<div class="order-of-service">
-			<div class="head">
-				<div class="burger dark">
-					<i class="fa fa-bars"></i>
-				</div>
-				<div class="name">{{service.name}}</div>
-			</div>		
-			<div class="items">
-				{{#each item in service.items}}
-					{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
-				{{/each}}
+<!-- Left Pane -->
+<div class="page-library_left">
+	<div class="order-of-service">
+		<div class="head">
+			<div class="burger dark">
+				<i class="fa fa-bars"></i>
 			</div>
+			<div class="name">{{service.name}}</div>
+		</div>		
+		<div class="items">
+			{{#each item in service.items}}
+				{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
+			{{/each}}
 		</div>
 	</div>
+</div>
 
-	<!-- Middle Pane -->
-	<div class="page-library_middle">
+<!-- Middle Pane -->
+<div class="page-library_middle">
 
-		<div class="library-category-selectors">
-			<div class="head">Libraries</div>
-			{{#link-to 'library.songs'}}Songs{{/link-to}}
-		</div>
+	<div class="library-category-selectors">
+		<div class="head">Libraries</div>
+		{{library-category-selector
+			targetCategoryIdentifier="songs"
+			displayName="Songs"
+			currentCategoryIdentifier=currentCategoryIdentifier
+			activateAction="activateCategory"}}
+	</div>
 
-		<div class="library-category-cc">
-			{{outlet}}
-		</div>
+	<div class="library-category-cc">
+
+		{{library-songs
+			categoryIdentifier="songs"
+			store=store
+			currentCategoryIdentifier=currentCategoryIdentifier}}
 
 	</div>
 
 </div>
+

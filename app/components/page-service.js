@@ -2,6 +2,21 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+	/************/
+	/* Page DOM */
+	/************/
+
+	classNames: ['page', 'page-service'],
+	classNameBindings: ['isActive::page-inactive'],
+
+	isActive: function() {
+		return this.get('pageIdentifier') === this.get('currentPageIdentifier');
+	}.property('pageIdentifier', 'currentPageIdentifier'),
+
+	/********/
+	/* Item */
+	/********/
+
 	activeItem: false,
 
 	selectedItem: false,

@@ -1,0 +1,51 @@
+{{#if editingSong}}
+
+	<div class="library-songs_editor">
+		<h1>Song Editor</h1>
+
+		<p {{action "doneEditingSong"}}>[Done]</p>
+
+		<div>
+			<p>Title</p>
+			{{input type="text" name="songTitle" value=editingSong.title}}
+		</div>
+
+		<div>
+			<p>Description</p>
+			{{input type="text" name="songDescription" value=editingSong.description}}
+		</div>
+
+		<textarea id="" cols="50" rows="10">{{!
+		  }}{{#each lyricsBlock in editingSong.lyricsBlocks}}{{!
+			  }}[{{lyricsBlock.name}}]
+{{!			  }}{{#each lyric in lyricsBlock.lyrics}}{{!
+				  }}{{lyric.text.English}}
+{{!			  }}{{/each}}{{!
+		  }}{{/each}}{{!
+	  }}</textarea>
+
+	</div>
+
+{{else}}
+
+	<div class="library-songs_list">
+		<p>All Songs</p>
+		<ul>
+			{{#each song in songs}}
+				<li {{action "previewSong" song}}>[{{song.title}}]</li>
+			{{/each}}
+		</ul>
+	</div>
+
+	<div class="library-songs_preview">
+		{{#if previewingSong}}
+			<h1>Preview for Song #{{previewingSong.id}}</h1>
+			<h2>{{previewingSong.title}}</h2>
+			<h3>{{previewingSong.description}}</h3>
+			<p>{{previewingSong.lyrics}}</p>
+
+			<div {{action "startEditingSong" previewingSong}}>[Edit...]</div>
+		{{/if}}
+	</div>
+
+{{/if}}

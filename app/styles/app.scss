@@ -18,7 +18,11 @@ $color-active: #C50000;
 /* App General */
 /***************/
 
-html, body, body>.ember-view, .page {
+html,
+body, // container for application.hbs
+body>.ember-view, // container for index.hbs
+body>.ember-view>.ember-view, // container for psalmist-application.hbs
+.page {
 	height: 100%;
 }
 
@@ -53,9 +57,10 @@ header {
 
 	nav {
 		display: flex;
-		a {
+		.app-nav-link {
 			padding: 10px 15px;
 			color: rgba(255, 255, 255, 0.9);
+			cursor: pointer;
 			.link {
 				opacity: 0.8;
 				transition: opacity 150ms ease;
@@ -67,6 +72,7 @@ header {
 			}
 			&.active {
 				background-color: rgba(0,0,0,0.5);
+				cursor: default;
 				.link {
 					opacity: 1;
 				}
@@ -166,6 +172,14 @@ main {
 
 .styling {
 	padding: 10px;
+}
+
+/******************/
+/* Page (General) */
+/******************/
+
+.page.page-inactive {
+	display: none;
 }
 
 /****************/
@@ -478,7 +492,7 @@ main {
 
 	.library-category-selectors {
 
-		.head, a {
+		>* {
 			display: inline-block;
 			font-size: 12px;
 			line-height: 16px;
@@ -493,7 +507,7 @@ main {
 			opacity: 0.5;
 		}
 
-		a {
+		.library-category-selector {
 			color: #000;
 			font-weight: bold;
 			&:hover {
@@ -510,4 +524,23 @@ main {
 	.library-category-cc {
 		margin-top: 10px;
 	}
+}
+
+.library-category.library-category-inactive {
+	display: none;
+}
+
+/******************/
+/* Library: Songs */
+/******************/
+
+.library-category-songs {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.library-songs_list,
+.library-songs_preview {
+	display: table-cell;
+	width: 50%;
 }

@@ -1,119 +1,116 @@
-<div class="page page-service">
-
-	<!-- Left Pane -->
-	<div class="page-service_left">
-		<div class="order-of-service">
-			<div class="head">
-				<div class="burger dark">
-					<i class="fa fa-bars"></i>
-				</div>
-				<div class="name">{{service.name}}</div>
-			</div>		
-			<div class="items">
-				{{#each item in service.items}}
-					{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
-				{{/each}}
+<!-- Left Pane -->
+<div class="page-service_left">
+	<div class="order-of-service">
+		<div class="head">
+			<div class="burger dark">
+				<i class="fa fa-bars"></i>
 			</div>
+			<div class="name">{{service.name}}</div>
+		</div>		
+		<div class="items">
+			{{#each item in service.items}}
+				{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
+			{{/each}}
 		</div>
-		<div class="styling">
-			<div class="head">
-				<div class="burger dark">
-					<i class="fa fa-bars"></i>
-				</div>
-				<div class="name">Style 1</div>
+	</div>
+	<div class="styling">
+		<div class="head">
+			<div class="burger dark">
+				<i class="fa fa-bars"></i>
 			</div>
-			<div class="styles">
-				<div class="style">
-					<div class="label">Font family</div>
-					<select name="font-family" class="value">
-						<option value="Montserrat">Montserrat</option>
-						<option value="Muli">Muli</option>
-					</select>
-				</div>
-				<div class="style">
-					<div class="label">Font size</div>
-					<select name="font-size" class="value">
-						<option value="32px">32px</option>
-						<option value="36px">36px</option>
-						<option value="auto">Automatic</option>
-					</select>
-				</div>
+			<div class="name">Style 1</div>
+		</div>
+		<div class="styles">
+			<div class="style">
+				<div class="label">Font family</div>
+				<select name="font-family" class="value">
+					<option value="Montserrat">Montserrat</option>
+					<option value="Muli">Muli</option>
+				</select>
+			</div>
+			<div class="style">
+				<div class="label">Font size</div>
+				<select name="font-size" class="value">
+					<option value="32px">32px</option>
+					<option value="36px">36px</option>
+					<option value="auto">Automatic</option>
+				</select>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- Middle Pane -->
-	<div class="page-service_middle">
+<!-- Middle Pane -->
+<div class="page-service_middle">
 
-		{{#if selectedItem}}
+	{{#if selectedItem}}
 
-			{{#if selectedSong}}
+		{{#if selectedSong}}
 
-				{{service-mp-song
-					serviceItem=selectedItem
-					song=selectedSong
-					activeLyricBlock=activeLyricBlock
-					activeLyric=activeLyric
-					activateVersionAction="activateVersion"
-					activateLyricAction="activateLyric"}}
-
-			{{else}}
-
-				<div class="other-item-type">There is a problem with this item (unrecognized itemType).</div>
-
-			{{/if}}
+			{{service-mp-song
+				serviceItem=selectedItem
+				song=selectedSong
+				activeLyricBlock=activeLyricBlock
+				activeLyric=activeLyric
+				activateVersionAction="activateVersion"
+				activateLyricAction="activateLyric"}}
 
 		{{else}}
 
-			<div class="pick-item">Select a service item.</div>
+			<div class="other-item-type">There is a problem with this item (unrecognized itemType).</div>
 
 		{{/if}}
 
-	</div>
+	{{else}}
 
-	<!-- Right Pane -->
-	<div class="page-service_right">
+		<div class="pick-item">Select a service item.</div>
 
-		<!-- Congregation Control Panel -->
-		<div class="congregation control-panel">
-			<div class="head">
-				<div class="name">Congregation</div>
+	{{/if}}
+
+</div>
+
+<!-- Right Pane -->
+<div class="page-service_right">
+
+	<!-- Congregation Control Panel -->
+	<div class="congregation control-panel">
+		<div class="head">
+			<div class="name">Congregation</div>
+		</div>
+		<div class="miniscreen">
+			{{#if selectedSong}}
+				{{display-song
+					activeLyric=activeLyric
+					song=selectedSong
+					selectedSecondaryVersionName=selectedSecondaryVersionName}}
+			{{/if}}
+		</div>
+		<div class="controls">
+			<div class="control">
+				<div class="icon"><i class="fa fa-square-o"></i></div>
+				<div class="caption">Clear</div>
 			</div>
-			<div class="miniscreen">
-				{{#if selectedSong}}
-					{{display-song
-						activeLyric=activeLyric
-						song=selectedSong
-						selectedSecondaryVersionName=selectedSecondaryVersionName}}
-				{{/if}}
+			<div class="control">
+				<div class="icon"><i class="fa fa-square"></i></div>
+				<div class="caption">Black</div>
 			</div>
-			<div class="controls">
-				<div class="control">
-					<div class="icon"><i class="fa fa-square-o"></i></div>
-					<div class="caption">Clear</div>
-				</div>
-				<div class="control">
-					<div class="icon"><i class="fa fa-square"></i></div>
-					<div class="caption">Black</div>
-				</div>
-				<div class="control">
-					<div class="icon"><i class="fa fa-times"></i></div>
-					<div class="caption">Off</div>
-				</div>
+			<div class="control">
+				<div class="icon"><i class="fa fa-times"></i></div>
+				<div class="caption">Off</div>
 			</div>
 		</div>
-
-		<!-- Team Control Panel -->
-		<div class="team control-panel">
-			<div class="head">
-				<div class="name">Team</div>
-			</div>
-			<div class="miniscreen">
-				{{#if selectedSong}}
-					{{display-song-team}}
-				{{/if}}
-			</div>
-		</div>
-
 	</div>
+
+	<!-- Team Control Panel -->
+	<div class="team control-panel">
+		<div class="head">
+			<div class="name">Team</div>
+		</div>
+		<div class="miniscreen">
+			{{#if selectedSong}}
+				{{display-song-team}}
+			{{/if}}
+		</div>
+	</div>
+
 </div>

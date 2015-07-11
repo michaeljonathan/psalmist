@@ -1,0 +1,33 @@
+<div class="app">
+	<header>
+		<div class="logo">Psalmist</div>
+		<nav>
+			{{app-nav-link
+				targetPageIdentifier="service"
+				displayName="Service"
+				currentPageIdentifier=currentPageIdentifier
+				activateAction="activatePage"}}
+			{{app-nav-link
+				targetPageIdentifier="library"
+				displayName="Library"
+				currentPageIdentifier=currentPageIdentifier
+				activateAction="activatePage"}}
+		</nav>
+	</header>
+	<main>
+
+		{{page-service
+			pageIdentifier="service"
+			service=service
+			store=store
+			currentPageIdentifier=currentPageIdentifier}}
+
+		{{page-library
+			pageIdentifier="library"
+			service=service
+			store=store
+			currentPageIdentifier=currentPageIdentifier}}
+
+	</main>
+</div>
+
