@@ -13,7 +13,6 @@
 /*************/
 
 $color-active: #C50000;
-/* #006eff; */ 
 
 /***************/
 /* App General */
@@ -57,6 +56,21 @@ header {
 		a {
 			padding: 10px 15px;
 			color: rgba(255, 255, 255, 0.9);
+			.link {
+				opacity: 0.8;
+				transition: opacity 150ms ease;
+			}
+			&:hover {
+				.link {
+					opacity: 1;
+				}
+			}
+			&.active {
+				background-color: rgba(0,0,0,0.5);
+				.link {
+					opacity: 1;
+				}
+			}
 		}
 	}
 
@@ -158,13 +172,13 @@ main {
 /* Service Page */
 /****************/
 
-.service.page {
+.page-service {
 	display: flex;
 
-	.left.pane {
+	.page-service_left {
 		flex-basis: 250px;
 	}
-	.middle.pane {
+	.page-service_middle {
 		flex: 1;
 		position: relative;
 		>* {
@@ -176,12 +190,12 @@ main {
 			display: flex;
 		}
 	}
-	.right.pane {
+	.page-service_right {
 		flex-basis: 250px;
 	}
 }
 
-.left.pane {
+.page-service_left {
 	border-right: 1px solid #AAA;
 	display: flex;
 	flex-flow: column;
@@ -196,7 +210,7 @@ main {
 	}
 }
 
-.middle.pane {
+.page-service_middle {
 	display: flex;
 
 	.item-settings {
@@ -317,7 +331,7 @@ main {
 	}
 }
 
-.right.pane {
+.page-service_right {
 	border-left: 1px solid #AAA;
 
 	.control-panel {
@@ -431,5 +445,69 @@ main {
 				}
 			}
 		}
+	}
+}
+
+/****************/
+/* Library Page */
+/****************/
+
+
+.page-library {
+	display: flex;
+
+	.page-library_left {
+		flex-basis: 250px;
+	}
+	.page-library_middle {
+		flex: 1;
+	}
+}
+
+.page-library_left {
+	border-right: 1px solid #AAA;
+	display: flex;
+	flex-flow: column;
+	.order-of-service {
+		flex: 1;
+	}
+}
+
+.page-library_middle {
+	padding: 10px;
+
+	.library-category-selectors {
+
+		.head, a {
+			display: inline-block;
+			font-size: 12px;
+			line-height: 16px;
+			text-transform: uppercase;
+			border-bottom: 3px solid transparent;
+			cursor: pointer;
+			padding-bottom: 3px;
+			margin-right: 5px;
+		}
+
+		.head {
+			opacity: 0.5;
+		}
+
+		a {
+			color: #000;
+			font-weight: bold;
+			&:hover {
+				color: $color-active;
+			}
+			&.active {
+				border-bottom-color: $color-active;
+				color: $color-active;
+				cursor: default;
+			}
+		}
+	}
+
+	.library-category-cc {
+		margin-top: 10px;
 	}
 }
