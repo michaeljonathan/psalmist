@@ -1,0 +1,14 @@
+<p {{action "save"}}>[Save]</p>
+<p {{action "cancel"}}>[Cancel]</p>
+
+<div>
+	{{input type="text" name="songTitle" value=formData.title}}
+</div>
+
+<div>
+	{{input type="text" name="songDescription" value=formData.description}}
+</div>
+
+<div>
+	{{textarea cols=100 rows=30 value=formData.lyrics}}
+</div>
