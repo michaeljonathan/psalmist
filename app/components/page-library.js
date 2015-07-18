@@ -21,6 +21,10 @@ export default Ember.Component.extend({
 			this.set('currentCategoryIdentifier', categoryIdentifier);
 		},
 
+		addSongToService: function(song) {
+			this.sendAction('addSongToServiceAction', song);
+		},
+
 		selectItem: function() {
 			console.log("Ignored attempt to selectItem from page-library.");
 		}

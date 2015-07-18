@@ -32,15 +32,4 @@ var ServiceItem = DS.Model.extend({
 
 });
 
-ServiceItem.reopenClass({
-	FIXTURES: [{
-		id: 1,
-		itemType: 'song',
-		song: '55974df67270a0f41b19fa20',
-		isSequenceEnabled: true,
-		sequence: [],
-		secondaryVersionName: 'Indonesian'
-	}]
-});
-
 export default ServiceItem;

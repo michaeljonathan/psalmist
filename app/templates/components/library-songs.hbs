@@ -25,6 +25,7 @@
 			<h3>{{previewingSong.description}}</h3>
 			<p>{{previewingSong.lyrics}}</p>
 
+			<div {{action "addSongToService" previewingSong}}>[Add to Service]</div>
 			<div {{action "startEditingSong" previewingSong}}>[Edit...]</div>
 		{{/if}}
 	</div>

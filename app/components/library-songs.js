@@ -30,6 +30,10 @@ export default Ember.Component.extend({
 			this.set('previewingSong', song);
 		},
 
+		addSongToService: function(song) {
+			this.sendAction('addSongToServiceAction', song);
+		},
+
 		startEditingSong: function(song) {
 			this.set('editingSong', song);
 		},
