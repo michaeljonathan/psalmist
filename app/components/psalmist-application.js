@@ -19,21 +19,40 @@ export default Ember.Component.extend({
 				console.error('No song to add to service.');
 			}
 
-			var service = this.get('service');
-			if (!service) {
-				console.log('No current service.');
-			}
+			var _this = this,
+				service,
+				store,
+				serviceItem;
 
-			var store = this.get('store');
-			var serviceItem = store.createRecord('serviceItem', {
-				itemType: 'song',
-				song: song,
-				isSequenceEnabled: false,
-				sequence: [],
-				secondaryVersionName: '',
-				service: service
+			_this.get('service')
+			.then(function(promisedService) {
+				if (!promisedService) {
+					console.log('No current service.');
+				}
+				service = promisedService;
+				return _this.get('store');
+			}).then(function(promisedStore) {
+				store = promisedStore;
+
+				serviceItem = store.createRecord('serviceItem', {
+					itemType: 'song',
+					song: song,
+					isSequenceEnabled: false,
+					sequence: [],
+					secondaryVersionName: ''
+				});
+				serviceItem.set('service', service);
+
+				return serviceItem.save();
+			}).then(function() {
+				// What the server does on behalf:
+				// var serviceItemsList = service.get('itemsList');
+				// serviceItemsList.push(serviceItem.get('id'));
+				// service.set('itemsList', serviceItemsList);
+				// service.save();
+				service.reload();
 			});
-			console.log(serviceItem);
+
 		}
 
 	}
