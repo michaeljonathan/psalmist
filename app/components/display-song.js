@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import LocalState from 'psalmist/models/local-state';
 
 export default Ember.Component.extend({
 
@@ -18,6 +19,19 @@ export default Ember.Component.extend({
 			return activeLyric.text[selectedSecondaryVersionName];
 		}
 		return null;
-	}.property('activeLyric', 'selectedSecondaryVersionName')
+	}.property('activeLyric', 'selectedSecondaryVersionName'),
+
+	// Experimenting with localState
+
+	localState: LocalState.create(),
+
+	localStateUpdaterObserver: function() {
+		var primaryText = this.get('primaryText');
+		var secondaryText = this.get('secondaryText');
+		this.set('localState.congregationDisplayData', {
+			primaryText: primaryText,
+			secondaryText: secondaryText
+		});
+	}.observes('primaryText', 'secondaryText')
 
 });
