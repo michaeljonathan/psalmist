@@ -62,9 +62,30 @@ export default Ember.Component.extend({
 		return this.$('.items');
 	}.property(),
 
+	isBrowsingServices: false,
+
+	services: function() {
+		return this.get('store').find('service');
+	}.property(),
+
 	actions: {
+
+		toggleBrowsingServices: function() {
+			this.toggleProperty('isBrowsingServices');
+		},
+
 		selectItem: function(item) {
-			this.sendAction('selectAction', item);
+			this.sendAction('selectItemAction', item);
+		},
+
+		selectService: function(service) {
+			this.set('isBrowsingServices', false);
+			this.sendAction('selectServiceAction', service);
+		},
+
+		createNewService: function() {
+			this.set('isBrowsingServices', false);
+			this.sendAction('createNewServiceAction');
 		}
 	},
 

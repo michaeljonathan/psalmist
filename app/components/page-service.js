@@ -48,6 +48,10 @@ export default Ember.Component.extend({
 
 	actions: {
 
+		selectService: function(service) {
+			this.sendAction('selectServiceAction', service);
+		},
+
 		selectItem: function(item) {
 			this.set('selectedItem', item);
 		},
@@ -70,6 +74,10 @@ export default Ember.Component.extend({
 				selectedItem.set('secondaryVersionName', version);
 				selectedItem.save();
 			});
+		},
+
+		createNewService: function() {
+			this.sendAction('createNewServiceAction');
 		}
 
 	}

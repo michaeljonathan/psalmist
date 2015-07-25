@@ -20,7 +20,7 @@
 	<div class="library-songs_list">
 		<p>All Songs</p>
 		<ul>
-			<li {{action "startCreatingSong"}}>[Add New...]</li>
+			<li {{action "startCreatingSong"}}>[Add New Song]</li>
 			{{#each song in songs}}
 				<li {{action "previewSong" song}}>[{{song.title}}]</li>
 			{{/each}}

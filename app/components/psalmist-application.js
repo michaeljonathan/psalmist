@@ -4,9 +4,7 @@ export default Ember.Component.extend({
 
 	currentPageIdentifier: 'service', // Default page
 
-	service: function() {
-		return this.get('store').find('service', '55a6d56ede8c26d021b411bf'); // TODO
-	}.property(),
+	service: null,
 
 	actions: {
 
@@ -19,32 +17,28 @@ export default Ember.Component.extend({
 				console.error('No song to add to service.');
 			}
 
-			var _this = this,
-				service,
+			var service,
 				store,
 				serviceItem;
 
-			_this.get('service')
-			.then(function(promisedService) {
-				if (!promisedService) {
-					console.log('No current service.');
-				}
-				service = promisedService;
-				return _this.get('store');
-			}).then(function(promisedStore) {
-				store = promisedStore;
+			service = this.get('service');
+			if (!service) {
+				alert('No current service.');
+				return;
+			}
 
-				serviceItem = store.createRecord('serviceItem', {
-					itemType: 'song',
-					song: song,
-					isSequenceEnabled: false,
-					sequence: [],
-					secondaryVersionName: ''
-				});
-				serviceItem.set('service', service);
-
-				return serviceItem.save();
-			}).then(function() {
+			store = this.get('store');
+			
+			serviceItem = store.createRecord('serviceItem', {
+				itemType: 'song',
+				song: song,
+				isSequenceEnabled: false,
+				sequence: [],
+				secondaryVersionName: ''
+			});
+			serviceItem.set('service', service);
+			serviceItem.save()
+			.then(function() {
 				// What the server does on behalf:
 				// var serviceItemsList = service.get('itemsList');
 				// serviceItemsList.push(serviceItem.get('id'));
@@ -53,6 +47,21 @@ export default Ember.Component.extend({
 				service.reload();
 			});
 
+		},
+
+		selectService: function(service) {
+			this.set('service', service);
+		},
+
+		createNewService: function() {
+			var _this = this,
+				service = this.get('store').createRecord('service');
+			service.set('name', 'New Service');
+			service.set('itemsList', []);
+			service.save()
+			.then(function() {
+				_this.set('service', service);
+			});
 		}
 
 	}

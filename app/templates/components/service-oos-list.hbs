@@ -1,11 +1,30 @@
-<div class="head">
-	<div class="burger dark">
-		<i class="fa fa-bars"></i>
+{{#if isBrowsingServices}}
+
+	<div class="head">
+		<div class="burger dark" {{action "toggleBrowsingServices"}}>
+			<i class="fa fa-bars"></i>
+		</div>
+		<div class="name">All Services</div>
+	</div>		
+	<div class="services">
+		<li {{action "createNewService"}}>[Add New Service]</li>
+		{{#each service in services}}
+			<li {{action "selectService" service}}>{{service.name}}</li>
+		{{/each}}
 	</div>
-	<div class="name">{{service.name}}</div>
-</div>		
-<div class="items">
-	{{#each item in service.items}}
-		{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
-	{{/each}}
-</div>
+
+{{else}}
+
+	<div class="head">
+		<div class="burger dark" {{action "toggleBrowsingServices"}}>
+			<i class="fa fa-bars"></i>
+		</div>
+		<div class="name">{{service.name}}</div>
+	</div>		
+	<div class="items">
+		{{#each item in service.items}}
+			{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
+		{{/each}}
+	</div>
+
+{{/if}}
