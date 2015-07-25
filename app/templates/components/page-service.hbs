@@ -1,17 +1,10 @@
 <!-- Left Pane -->
 <div class="page-service_left">
 	<div class="order-of-service">
-		<div class="head">
-			<div class="burger dark">
-				<i class="fa fa-bars"></i>
-			</div>
-			<div class="name">{{service.name}}</div>
-		</div>		
-		<div class="items">
-			{{#each item in service.items}}
-				{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
-			{{/each}}
-		</div>
+		{{service-oos-list
+			service=service
+			selectedItem=selectedItem
+			selectAction="selectItem"}}
 	</div>
 	<div class="styling">
 		<div class="head">

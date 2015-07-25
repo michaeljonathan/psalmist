@@ -1,0 +1,11 @@
+<div class="head">
+	<div class="burger dark">
+		<i class="fa fa-bars"></i>
+	</div>
+	<div class="name">{{service.name}}</div>
+</div>		
+<div class="items">
+	{{#each item in service.items}}
+		{{service-oos-item item=item selectAction="selectItem" selectedItem=selectedItem}}
+	{{/each}}
+</div>

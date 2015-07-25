@@ -28,4 +28,7 @@ app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff", { dest
 app.import("bower_components/fontawesome/fonts/fontawesome-webfont.woff2", { destDir: "fonts" });
 app.import("bower_components/fontawesome/fonts/FontAwesome.otf", { destDir: "fonts" });
 
+/* jQuery UI */
+app.import("bower_components/jquery-ui/jquery-ui.js");
+
 module.exports = app.toTree();
