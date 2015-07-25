@@ -58,12 +58,12 @@ header {
 	nav {
 		display: flex;
 		.app-nav-link {
-			padding: 10px 15px;
-			color: rgba(255, 255, 255, 0.9);
-			cursor: pointer;
 			.link {
 				opacity: 0.8;
 				transition: opacity 150ms ease;
+				padding: 10px 15px;
+				cursor: pointer;
+				color: rgba(255, 255, 255, 0.9);
 			}
 			&:hover {
 				.link {
