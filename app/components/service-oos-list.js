@@ -1,21 +1,59 @@
 import Ember from 'ember';
 
-var updateServiceItemsList = function (service, newItemsList) {
-	if (!service || !newItemsList) {
-		alert('Service items did not update (missing arguments).');
+var reorderServiceItemsList = function(oosContext, newItemsList) {
+
+	return oosContext.get('service')
+	.then(function(service) {
+		if (!service || !newItemsList) {
+			alert('Service items did not update (missing arguments).');
+			return;
+		}
+
+		// Make sure the new items list is truly a re-ordering of
+		// the old one. We use .slice() to copy the arrays before
+		// calling .sort(), as to avoid mutating the original arrays.
+		var oldItemsList = service.get('itemsList');
+		if (oldItemsList.slice().sort().join(',') !== newItemsList.slice().sort().join(',')) {
+			alert('Service items did not update (items are different).');
+		}
+
+		service.set('itemsList', newItemsList);
+		return service.save();
+	});
+
+};
+
+var deleteServiceItemByViewID = function(oosContext, itemEmberViewID) {
+
+	var serviceOosItemComponent,
+		serviceItem,
+		serviceItemName,
+		service;
+
+	serviceOosItemComponent = Ember.View.views[itemEmberViewID];
+	if (!serviceOosItemComponent) {
+		alert('Unable to delete item (cannot match view).');
 		return;
 	}
 
-	// Make sure the new items list is truly a re-ordering of
-	// the old one. We use .slice() to copy the arrays before
-	// calling .sort(), as to avoid mutating the original arrays.
-	var oldItemsList = service.get('itemsList');
-	if (oldItemsList.slice().sort().join(',') !== newItemsList.slice().sort().join(',')) {
-		alert('Service items did not update (items are different).');
-	}
-
-	service.set('itemsList', newItemsList);
-	return service.save();
+	return serviceOosItemComponent.get('item')
+	.then(function(promisedServiceItem) {
+		serviceItem = promisedServiceItem;
+		return oosContext.get('service');
+	}).then(function(promisedService) {
+		service = promisedService;					
+		return serviceItem.get('name');
+	}).then(function(promisedServiceItemName) {
+		serviceItemName = promisedServiceItemName;
+		return service.get('name');
+	}).then(function(serviceName) {
+		if (!window.confirm('Remove '+serviceItemName+' from '+serviceName+'?')) {
+			return;
+		}
+		return serviceItem.destroyRecord();
+	}).then(function() {
+		return service.reload();
+	});
 };
 
 export default Ember.Component.extend({
@@ -35,17 +73,35 @@ export default Ember.Component.extend({
 		var _this = this;
 		var $itemsList = this.get('$itemsList');
 
-		// Enable sorting of serviceItems
+		// Enable sorting and deleting of serviceItems
+		var isSortableWithinBoundaries = true;
 		$itemsList.sortable({
+
+			// Drag and drop to reorder service.itemsList
 			update: function() {
 				var updatedItemsList = $itemsList.sortable('toArray', {
 					attribute: 'service-item-id'
 				});
+				reorderServiceItemsList(_this, updatedItemsList);
+			},
 
-				_this.get('service')
-				.then(function(service) {
-					updateServiceItemsList(service, updatedItemsList);
-				});
+			// Drag out to delete serviceItem object
+			receive: function() {
+				isSortableWithinBoundaries = true;
+			},
+			over: function() {
+				isSortableWithinBoundaries = true;
+			},
+			out: function() {
+				isSortableWithinBoundaries = false;
+			},
+			beforeStop: function(e, ui) {
+				if (isSortableWithinBoundaries) {
+					return;
+				}
+
+				var itemEmberViewID = ui.item.attr('id');
+				deleteServiceItemByViewID(_this, itemEmberViewID);
 			}
 		});
 	}
