@@ -1,4 +1,12 @@
-{{#if editingSong}}
+{{#if isCreatingSong}}
+
+	<div class="library-songs_editor">
+		{{library-song-editor
+			store=store
+			doneEditingAction="doneCreatingSong"}}
+	</div>
+
+{{else}}{{#if editingSong}}
 
 	<div class="library-songs_editor">
 		{{library-song-editor
@@ -12,6 +20,7 @@
 	<div class="library-songs_list">
 		<p>All Songs</p>
 		<ul>
+			<li {{action "startCreatingSong"}}>[Add New...]</li>
 			{{#each song in songs}}
 				<li {{action "previewSong" song}}>[{{song.title}}]</li>
 			{{/each}}
@@ -30,4 +39,4 @@
 		{{/if}}
 	</div>
 
-{{/if}}
+{{/if}}{{/if}}

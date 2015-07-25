@@ -17,6 +17,7 @@ export default Ember.Component.extend({
 	/* Songs */
 	/*********/
 
+	isCreatingSong: false,
 	editingSong: null,
 	previewingSong: null,
 
@@ -32,6 +33,14 @@ export default Ember.Component.extend({
 
 		addSongToService: function(song) {
 			this.sendAction('addSongToServiceAction', song);
+		},
+
+		startCreatingSong: function() {
+			this.set('isCreatingSong', true);
+		},
+
+		doneCreatingSong: function() {
+			this.set('isCreatingSong', false);
 		},
 
 		startEditingSong: function(song) {
