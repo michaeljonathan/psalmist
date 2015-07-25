@@ -65,9 +65,11 @@ export default Ember.Component.extend({
 		},
 
 		activateVersion: function(version) {
-			var selectedItem = this.get('selectedItem');
-			selectedItem.set('secondaryVersionName', version);
-			selectedItem.save();
+			this.get('selectedItem')
+			.then(function(selectedItem) {
+				selectedItem.set('secondaryVersionName', version);
+				selectedItem.save();
+			});
 		}
 
 	}
