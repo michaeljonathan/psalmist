@@ -16,10 +16,15 @@
 {{else}}
 
 	<div class="head">
-		<div class="burger dark" {{action "toggleBrowsingServices"}}>
-			<i class="fa fa-bars"></i>
-		</div>
-		<div class="name">{{service.name}}</div>
+		{{#unless isRenamingService}}
+			<div class="burger dark" {{action "toggleBrowsingServices"}}>
+				<i class="fa fa-bars"></i>
+			</div>
+			<div class="name" {{action "startRenamingService"}}>{{service.name}}</div>
+		{{else}}
+			<div class="rename-save" {{action "doneRenamingService"}}>[Save]</div>
+			{{input type="text" value=service.name}}
+		{{/unless}}
 	</div>		
 	<div class="items">
 		{{#each item in service.items}}

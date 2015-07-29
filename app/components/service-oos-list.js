@@ -64,6 +64,8 @@ export default Ember.Component.extend({
 
 	isBrowsingServices: false,
 
+	isRenamingService: false,
+
 	services: function() {
 		return this.get('store').find('service');
 	}.property(),
@@ -86,6 +88,15 @@ export default Ember.Component.extend({
 		createNewService: function() {
 			this.set('isBrowsingServices', false);
 			this.sendAction('createNewServiceAction');
+		},
+
+		startRenamingService: function() {
+			this.set('isRenamingService', true);
+		},
+
+		doneRenamingService: function() {
+			this.get('service').save();
+			this.set('isRenamingService', false);
 		}
 	},
 
