@@ -7,9 +7,12 @@
 		<div class="name">All Services</div>
 	</div>		
 	<div class="services">
-		<li {{action "createNewService"}}>[Add New Service]</li>
-		{{#each service in services}}
-			<li {{action "selectService" service}}>{{service.name}}</li>
+		<li class="create-new-service" {{action "createNewService"}}>Create New <i class="fa fa-angle-right"></i></li>
+		{{#each oneservice in services}}
+			{{service-oos-list-service-li
+				service=oneservice
+				selectedService=service
+				selectServiceAction="selectService"}}
 		{{/each}}
 	</div>
 
@@ -20,10 +23,10 @@
 			<div class="burger dark" {{action "toggleBrowsingServices"}}>
 				<i class="fa fa-bars"></i>
 			</div>
-			<div class="name" {{action "startRenamingService"}}>{{service.name}}</div>
+			<div class="name name-service" {{action "startRenamingService"}}>{{service.name}}</div>
 		{{else}}
-			<div class="rename-save" {{action "doneRenamingService"}}>[Save]</div>
-			{{input type="text" value=service.name}}
+			<div class="rename-save" {{action "doneRenamingService"}}>Save <i class="fa fa-angle-right"></i></div>
+			<div class="input-name-container">{{input type="text" value=service.name classBinding=":input-name"}}</div>
 		{{/unless}}
 	</div>		
 	<div class="items">

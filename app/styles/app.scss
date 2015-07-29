@@ -12,7 +12,8 @@
 /* Variables */
 /*************/
 
-$color-active: #C50000;
+$color-active: #A10000;
+$color-active-light: #C50000;
 
 /***************/
 /* App General */
@@ -110,6 +111,11 @@ main {
 			float: right;
 			margin-left: 5px;
 			color: #777;
+			opacity: 0.5;
+			cursor: pointer;
+			&:hover {
+				opacity: 1;
+			}
 		}
 		.name {
 			@include line-truncate;
@@ -133,9 +139,49 @@ main {
 
 	.head {
 		padding: 10px 10px 0;
+
+		// Name display
+		.name-service {
+			border-bottom: 1px solid transparent;
+			margin-bottom: 3px;
+			&:hover {
+				border-bottom-color: #d9d9d9;
+			}
+		}
+
+		// Rename
+		.rename-save {
+			float: right;
+			color: #fff;
+			border-radius: 3px;
+			background-color: $color-active;
+		    padding: 2px 8px;
+			font-size: 12px;
+			cursor: pointer;
+			position: relative;
+			top: -2px;
+			&:hover {
+				background-color: $color-active-light;
+			}
+		}
+		.input-name-container {
+			overflow: hidden;
+			padding-right: 5px;
+			input {
+				width: 100%;
+				border: none;
+				border-bottom: 1px solid #AAA;
+				outline: none;
+				font-family: inherit;
+				font-size: 14px;
+				font-weight: bold;
+				letter-spacing: inherit;
+			}
+		}
+
 	}
 
-	.items {
+	.items, .services {
 		flex: 1;
 		padding: 0 10px;
 		margin-top: 7px;
@@ -175,6 +221,54 @@ main {
 		}
 		&:hover {
 			background-color: #222;
+		}
+	}
+
+	.services {
+		li {
+			list-style-type: none;
+			border-top: 1px solid #eee;
+			padding: 7px 10px;
+			cursor: pointer;
+			position: relative;
+			&:last-child {
+				border-bottom: 1px solid #eee;
+			}
+			&.active:before,
+			&:hover:before {
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 4px;
+				height: 100%;
+			}
+			&.active {
+				color: $color-active;
+				&:before {
+					background-color: $color-active;
+				}
+			}
+			&:hover {
+				color: $color-active-light;
+				&:before {
+					background-color: $color-active-light;
+				}
+			}
+
+			&.create-new-service {
+				font-weight: 600;
+				letter-spacing: 1px;
+				i {
+					float: right;
+					margin-top: 2px;
+				}
+			}
+
+			span {
+				display: block;
+			}
 		}
 	}
 }
@@ -311,11 +405,11 @@ main {
 				padding-bottom: 3px;
 				margin-right: 5px;
 				&:hover {
-					color: $color-active;
+					color: $color-active-light;
 				}
 				&.active {
-					border-bottom-color: $color-active;
-					color: $color-active;
+					border-bottom-color: $color-active-light;
+					color: $color-active-light;
 					cursor: default;
 				}
 			}
@@ -340,7 +434,7 @@ main {
 					cursor: pointer;
 					border-radius: 4px;
 					&:hover {
-						color: $color-active;
+						color: $color-active-light;
 					}
 					&.active {
 						background-color: $color-active;
@@ -415,7 +509,7 @@ main {
 					text-align: center;
 					cursor: pointer;
 					&:hover {
-						color: $color-active;
+						color: $color-active-light;
 					}
 					.icon {
 						font-size: 28px;
@@ -520,11 +614,11 @@ main {
 			color: #000;
 			font-weight: bold;
 			&:hover {
-				color: $color-active;
+				color: $color-active-light;
 			}
 			&.active {
-				border-bottom-color: $color-active;
-				color: $color-active;
+				border-bottom-color: $color-active-light;
+				color: $color-active-light;
 				cursor: default;
 			}
 		}
