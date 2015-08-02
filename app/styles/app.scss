@@ -145,7 +145,23 @@ main {
 			border-bottom: 1px solid transparent;
 			margin-bottom: 3px;
 			&:hover {
-				border-bottom-color: #d9d9d9;
+				border-bottom-color: $color-active-light;
+			}
+		}
+		.name-services-list-heading {
+			text-transform: uppercase;
+			opacity: 0.7;
+			font-size: 12px;
+			padding-left: 25px;
+		}
+
+		// Back
+		.back {
+			float: left;
+			color: $color-active;
+			cursor: pointer;
+			&:hover {
+				color: $color-active-light;
 			}
 		}
 
@@ -155,7 +171,7 @@ main {
 			color: #fff;
 			border-radius: 3px;
 			background-color: $color-active;
-		    padding: 2px 8px;
+			padding: 2px 8px;
 			font-size: 12px;
 			cursor: pointer;
 			position: relative;
@@ -170,7 +186,7 @@ main {
 			input {
 				width: 100%;
 				border: none;
-				border-bottom: 1px solid #AAA;
+				border-bottom: 1px solid #DDD;
 				outline: none;
 				font-family: inherit;
 				font-size: 14px;
@@ -209,10 +225,10 @@ main {
 				opacity: 0.7;
 			}
 			.caption {
-				font-size: 12px;
+				font-size: 10px;
 				font-style: italic;
 				@include line-truncate;
-				height: 20px; // Force height even if empty
+				height: 18px; // Force height even if empty
 			}
 		}
 
@@ -228,7 +244,6 @@ main {
 		li {
 			list-style-type: none;
 			border-top: 1px solid #eee;
-			padding: 7px 10px;
 			cursor: pointer;
 			position: relative;
 			&:last-child {
@@ -268,6 +283,7 @@ main {
 
 			span {
 				display: block;
+				padding: 7px 10px;
 			}
 		}
 	}
@@ -329,6 +345,12 @@ main {
 
 .page-service_middle {
 	display: flex;
+
+	.pick-item {
+		padding: 40px;
+		opacity: 0.4;
+		font-size: 18px;
+	}
 
 	.item-settings {
 		flex-basis: 200px;
@@ -594,6 +616,7 @@ main {
 	padding: 10px;
 
 	.library-category-selectors {
+		border-bottom: 1px solid #eee;
 
 		>* {
 			display: inline-block;
@@ -645,5 +668,157 @@ main {
 .library-songs_list,
 .library-songs_preview {
 	display: table-cell;
-	width: 50%;
+	vertical-align: top;
 }
+.library-songs_list {
+	width: 250px;
+
+	.lsli-miniheading {
+		text-transform: uppercase;
+		opacity: 0.7;
+		font-size: 12px;
+		font-weight: bold;
+		margin-bottom: 5px;
+		text-align: center;
+	}
+
+	.lsli {
+		list-style-type: none;
+		border-top: 1px solid #eee;
+		cursor: pointer;
+		position: relative;
+		padding: 5px 10px;
+		&:last-child {
+			border-bottom: 1px solid #eee;
+		}
+		&:hover:before {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 4px;
+			height: 100%;
+		}
+		&:hover {
+			color: $color-active-light;
+			&:before {
+				background-color: $color-active-light;
+			}
+		}
+
+		&.lsli-create {
+			font-weight: 600;
+			letter-spacing: 1px;
+			padding-top: 14px;
+			padding-bottom: 14px;
+			i {
+				float: right;
+				margin-top: 2px;
+			}
+		}
+		span {
+			display: block;
+		}
+		.lsli-description {
+			font-size: 10px;
+			font-style: italic;
+			height: 18px;
+			@include line-truncate;
+			opacity: 0.8;
+		}
+	}
+}
+.library-songs_sidepreview {
+	padding-left: 20px;
+	.lsp-head {
+		padding-bottom: 10px;
+		border-bottom: 1px solid #eee;
+		margin-bottom: 10px;
+	}
+	.lsp-controls {
+		margin-top: 7px;
+	}
+	.lsp-control {
+		display: inline-block;
+		color: #fff;
+		border-radius: 3px;
+		background-color: $color-active;
+		padding: 3px 10px;
+		cursor: pointer;
+		&:hover {
+			background-color: $color-active-light;
+		}
+	}
+	.lsp-title {
+		font-size: 24px;
+		line-height: 30px;
+		margin-top: 5px;
+	}
+	.lsp-description {
+		font-style: italic;
+	}
+	.lsp-id {
+		opacity: 0.5;
+		font-style: 12px;
+	}
+}
+.library-songs_editor {
+	.lse-controls {
+		margin-bottom: 3px;
+	}
+	.lse-control {
+		display: inline-block;
+		color: #fff;
+		border-radius: 3px;
+		background-color: $color-active;
+		padding: 3px 10px;
+		cursor: pointer;
+		&:hover {
+			background-color: $color-active-light;
+		}
+	}
+	.lse-scroll {
+		overflow: scroll;
+	}
+	.lse-form,
+	.lse-preview {
+		float: left;
+	}
+	.lse-form {
+		width: 600px;
+	}
+	.lse-title-cc,
+	.lse-description-cc {
+		input {
+			border: none;
+			border-bottom: 1px solid #DDD;
+			font-family: inherit;
+			outline: none;
+			width: 100%;
+		}
+	}
+	.lse-title-cc {
+		input {
+			font-size: 24px;
+			line-height: 30px;
+			margin-top: 5px;
+		}
+	}
+	.lse-description-cc {
+		margin-top: 5px;
+	}
+	.lse-lyrics-cc {
+		margin-top: 5px;
+		textarea {
+			border: 1px solid #DDD;
+			outline: none;
+			width: 100%;
+			resize: vertical;
+		}
+	}
+}
+.library-songs_previewer {
+
+}
+

@@ -18,24 +18,33 @@
 {{else}}
 
 	<div class="library-songs_list">
-		<p>All Songs</p>
+		<div class="lsli-miniheading">All Songs</div>
 		<ul>
-			<li {{action "startCreatingSong"}}>[Add New Song]</li>
+			<li class="lsli lsli-create" {{action "startCreatingSong"}}>Create New <i class="fa fa-angle-right"></i></li>
 			{{#each song in songs}}
-				<li {{action "previewSong" song}}>[{{song.title}}]</li>
+				<li class="lsli" {{action "previewSong" song}}>
+					<span class="lsli-title">{{song.title}}</span>
+					<span class="lsli-description">{{song.description}}</span>
+				</li>
 			{{/each}}
 		</ul>
 	</div>
 
-	<div class="library-songs_preview">
+	<div class="library-songs_sidepreview">
 		{{#if previewingSong}}
-			<h1>Preview for Song #{{previewingSong.id}}</h1>
-			<h2>{{previewingSong.title}}</h2>
-			<h3>{{previewingSong.description}}</h3>
-			<p>{{previewingSong.lyrics}}</p>
-
-			<div {{action "addSongToService" previewingSong}}>[Add to Service]</div>
-			<div {{action "startEditingSong" previewingSong}}>[Edit...]</div>
+			<div class="lsp-head">
+				<div class="lsp-title">{{previewingSong.title}}</div>
+				<div class="lsp-description">{{previewingSong.description}}</div>
+				<div class="lsp-id">ID: {{previewingSong.id}}</div>
+				<div class="lsp-controls">
+					<div class="lsp-control" {{action "addSongToService" previewingSong}}><i class="fa fa-plus"></i> Add to service</div>
+					<div class="lsp-control" {{action "startEditingSong" previewingSong}}>Edit <i class="fa fa-angle-right"></i></div>
+				</div>
+			</div>
+			<div class="lsp-preview">
+				{{library-song-previewer
+					song=previewingSong}}
+			</div>
 		{{/if}}
 	</div>
 

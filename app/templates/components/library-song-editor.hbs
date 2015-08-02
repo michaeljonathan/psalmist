@@ -1,14 +1,23 @@
-<p {{action "save"}}>[Save]</p>
-<p {{action "cancel"}}>[Cancel]</p>
-
-<div>
-	{{input type="text" name="songTitle" value=formData.title}}
-</div>
-
-<div>
-	{{input type="text" name="songDescription" value=formData.description}}
-</div>
-
-<div>
-	{{textarea cols=100 rows=30 value=formData.lyrics}}
+<div class="library-songs_editor">
+	<div class="lse-controls">
+		<div class="lse-control" {{action "save"}}><i class="fa fa-check"></i> Save</div>
+		<div class="lse-control" {{action "cancel"}}><i class="fa fa-times"></i> Discard</div>
+	</div>
+	<div class="lse-scroll">
+		<div class="lse-form">
+			<div class="lse-title-cc">
+				{{input type="text" name="songTitle" value=formData.title}}
+			</div>
+			<div class="lse-description-cc">
+				{{input type="text" name="songDescription" value=formData.description}}
+			</div>
+			<div class="lse-lyrics-cc">
+				{{textarea cols=100 rows=30 value=formData.lyrics}}
+			</div>
+		</div>
+		<div class="lse-preview">
+			{{library-song-previewer
+				song=song}}
+		</div>
+	</div>
 </div>

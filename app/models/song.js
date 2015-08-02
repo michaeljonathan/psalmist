@@ -12,7 +12,47 @@ var Song = DS.Model.extend({
 
     secondaryLyricsVersions: function() {
         return this.get('lyricsVersions') ? this.get('lyricsVersions').slice(1) : false;
-    }.property('lyricsVersions')
+    }.property('lyricsVersions'),
+
+    lyricsInVersions: function() {
+
+        var lyricsInVersions = [],
+            lyricsVersions = this.get('lyricsVersions'),
+            lyricsBlocks = this.get('lyricsBlocks'),
+            lyricsInVersion,
+            versionName,
+            lyricsBlock,
+            singleVersionLyricBlock,
+            lyric;
+
+        for (var i = 0; i < lyricsVersions.length; i++) {
+            versionName = lyricsVersions[i];
+            lyricsInVersion = {
+                versionName: versionName,
+                lyricsBlocks: []
+            };
+
+            for (var j = 0; j < lyricsBlocks.length; j++) {
+                lyricsBlock = lyricsBlocks[j];
+
+                singleVersionLyricBlock = {
+                    name: lyricsBlock.name,
+                    lyrics: []
+                };
+
+                for (var k = 0; k < lyricsBlock.lyrics.length; k++) {
+                    lyric = lyricsBlock.lyrics[k];
+                    singleVersionLyricBlock.lyrics.push(lyric.text[versionName]);
+                }
+
+                lyricsInVersion.lyricsBlocks.push(singleVersionLyricBlock);
+            }
+
+            lyricsInVersions.push(lyricsInVersion);
+        }
+
+        return lyricsInVersions;
+    }.property('lyricsVersions', 'lyricsBlocks')
 
 });
 
