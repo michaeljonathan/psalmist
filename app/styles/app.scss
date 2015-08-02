@@ -780,13 +780,18 @@ main {
 	}
 	.lse-scroll {
 		overflow: scroll;
+		display: table;
 	}
 	.lse-form,
 	.lse-preview {
-		float: left;
+		display: table-cell;
+		vertical-align: top;
 	}
 	.lse-form {
 		width: 600px;
+	}
+	.lse-preview {
+		padding-left: 20px;
 	}
 	.lse-title-cc,
 	.lse-description-cc {
@@ -819,6 +824,38 @@ main {
 	}
 }
 .library-songs_previewer {
-
+	overflow: scroll;
+	display: table;
+	.lspr-lyrics-in-version {
+		display: table-cell;
+		vertical-align: top;
+		padding-right: 20px;
+	}
+	.lspr-version-name {
+		opacity: 0.7;
+		font-size: 12px;
+		font-weight: bold;
+		text-transform: uppercase;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #DDD;
+	}
+	.lspr-lyrics-block {
+		margin-top: 10px;
+	}
+	.lspr-block-name {
+		display: inline-block;
+		margin-bottom: 5px;
+		@include lyric-block-name;
+	}
+	.lspr-lyrics {
+		overflow: hidden;
+	}
+	.lspr-lyric {
+		float: left;
+		clear: both;
+		padding: 3px 10px;
+		cursor: pointer;
+		border-radius: 4px;
+	}
 }
 

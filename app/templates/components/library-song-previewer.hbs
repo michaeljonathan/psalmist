@@ -1,3 +1,17 @@
 <div class="library-songs_previewer">
-{{song.lyricsInVersions}}
+	{{#each lyricsInVersion in song.lyricsInVersions}}
+		<div class="lspr-lyrics-in-version">
+			<div class="lspr-version-name">{{lyricsInVersion.versionName}}</div>
+			{{#each lyricsBlock in lyricsInVersion.lyricsBlocks}}
+				<div class="lspr-lyrics-block">
+					<div class="lspr-block-name">{{lyricsBlock.name}}</div>
+					<div class="lspr-lyrics">
+						{{#each lyric in lyricsBlock.lyrics}}
+							<div class="lspr-lyric">{{lyric}}</div>
+						{{/each}}
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	{{/each}}
 </div>
