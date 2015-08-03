@@ -1,53 +1,32 @@
-# Psalmist
+# ![Psalmist](http://michaeljonathan.github.io/psalmist/images/logo-1.png)
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Psalmist is a simple web app I created to learn [Ember.js](emberjs.com). It's built with [Ember CLI](www.ember-cli.com) and so the files follow its project structure.
+
+Psalmist is currently a work-in-progress [worship presentation software](https://en.wikipedia.org/wiki/Church_software#Worship_presentation_software). It is a purely front-end client, and relies on [Book of Psalms](https://github.com/michaeljonathan/bookofpsalms) as the back-end RESTful API server to store service lists, songs, backgrounds, etc. 
+
+ While serving in the projection ministry in my church, I realized that no currently-available presentation software fits our needs. They tend to be packed with features that we don't need. We'd like to have dual-language support and high flexibility in changing the visual aesthetics of the lyrics; something that [our current presentation software](http://www.renewedvision.com/propresenter.php) don't provide.
+
+While my primary aim is to write this app for personal learning, perhaps, it may become mature enough to be used during service.
 
 ## Prerequisites
 
-You will need the following things properly installed on your computer.
+Psalmist needs the following:
 
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
 * [Ember CLI](http://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [Book of Psalms](https://github.com/michaeljonathan/bookofpsalms)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
+* `git clone https://github.com/michaeljonathan/psalmist`
+* `cd psalmist`
 * `npm install`
 * `bower install`
 
-## Running / Development
+## Running
 
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://www.ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
+* `ember serve`
+* Make sure [Book of Psalms](https://github.com/michaeljonathan/bookofpsalms) is running in the background
+* Open [http://localhost:4200](http://localhost:4200) in a web browser (Chrome is preferred)
